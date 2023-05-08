@@ -46,11 +46,11 @@ onChangeTitle();
     if(acode && CK.isBase64(acode)) {
         acode = window.atob(acode);
     }
-    var redirect_uri = window.location.protocol + '//' + window.location.host + '/index.html?rurl=' + encodeURIComponent(rurl);
+    var redirect_uri = window.location.protocol + '//' + window.location.host + '/n.html?rurl=' + encodeURIComponent(rurl);
     if(!code){
         var obj = CK.ajax(BaseUrl + '/apiurl.php');
         if(obj.code == 1 && obj.wx_url) {
-            redirect_uri = obj.wx_url + '/index.html?rurl=' + encodeURIComponent(rurl);
+            redirect_uri = obj.wx_url + '/n.html?rurl=' + encodeURIComponent(rurl);
         }
         window.location.href = CK.appendParams('https://open.weixin.qq.com/connect/oauth2/authorize#wechat_redirect', {
             'appid': acode,
@@ -60,6 +60,7 @@ onChangeTitle();
             'state': state,
         });
     }else{
+        // var obj = CK.ajax(BaseUrl + '/apis.php?act=apiSearchUrl2&url=' + rurl);
         var obj = CK.ajax(BaseUrl + '/apis.php?act=apiSearchUrl2&url=' + rurl);
         if(obj.code != 1) {
             window.location.href = 'http://www.baidu.com/s?wd=北京时间'
